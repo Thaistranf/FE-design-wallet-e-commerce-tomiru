@@ -101,9 +101,10 @@ const OrderView = ({ order, loadingStatus }: OrderViewProps) => {
               />
               <Card
                 title={t('text-date')}
-                details={dayjs(order?.created_at).format('MMMM D, YYYY')}
+                details={dayjs(order?.created_at).format('DD/MM/YYYY')}
               />
-              <Card title={t('text-total')} details={total} />
+              {/* <Card title={t('text-total')} details={total} /> */}
+              <Card title={t('text-total')} details={`${order?.total_tomxu?.toString() as string} Tomxu`} />
               <Card
                 title={t('text-payment-method')}
                 details={order?.payment_gateway ?? 'N/A'}
@@ -136,10 +137,11 @@ const OrderView = ({ order, loadingStatus }: OrderViewProps) => {
                       t('text-item')
                     )}
                   />
-                  <Listitem title={t('text-sub-total')} details={sub_total} />
+                  {/* <Listitem title={t('text-sub-total')} details={sub_total} />
                   <Listitem title={t('text-tax')} details={tax} />
                   <div className="w-1/2 border-b border-solid border-gray-200 py-1 dark:border-b-[#434343]" />
-                  <Listitem title={t('text-total')} details={total} />
+                  <Listitem title={t('text-total')} details={total} /> */}
+                  <Listitem title={t('text-total')} details={`${order?.total_tomxu?.toString() as string} Tomxu`} />
                   {wallet_total && (
                     <Listitem
                       title={t('text-paid-from-wallet')}
@@ -154,7 +156,7 @@ const OrderView = ({ order, loadingStatus }: OrderViewProps) => {
                     />
                   )}
 
-                  <Listitem title={t('text-amount-due')} details={amountDue} />
+                  {/* <Listitem title={t('text-amount-due')} details={amountDue} /> */}
                 </div>
               </div>
               {/* end of total amount */}

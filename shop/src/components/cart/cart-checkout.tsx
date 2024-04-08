@@ -25,6 +25,7 @@ import { PaymentGateway } from '@/types';
 import { useSettings } from '@/data/settings';
 import { REVIEW_POPUP_MODAL_KEY } from '@/lib/constants';
 import Cookies from 'js-cookie';
+import LoopIcon from '@mui/icons-material/Loop';
 
 export default function CartCheckout() {
   const { settings } = useSettings();
@@ -33,24 +34,24 @@ export default function CartCheckout() {
 
   const { mutate, isLoading } = useMutation(client.orders.create, {
     onSuccess: (res) => {
-      const { tracking_number, payment_gateway, payment_intent } = res;
-      if (tracking_number) {
-        if (
-          [PaymentGateway.FULL_WALLET_PAYMENT].includes(
-            payment_gateway as PaymentGateway,
-          )
-        ) {
-          return router.push(`${routes.orderUrl(tracking_number)}/payment`);
-        }
+      // const { tracking_number, payment_gateway, payment_intent } = res;
+      // if (tracking_number) {
+      //   if (
+      //     [PaymentGateway.FULL_WALLET_PAYMENT].includes(
+      //       payment_gateway as PaymentGateway,
+      //     )
+      //   ) {
+      //     return router.push(`${routes.orderUrl(tracking_number)}/payment`);
+      //   }
 
-        if (payment_intent?.payment_intent_info?.is_redirect) {
-          return router.push(
-            payment_intent?.payment_intent_info?.redirect_url as string,
-          );
-        } else {
-          return router.push(`${routes.orderUrl(tracking_number)}/payment`);
-        }
-      }
+      //   if (payment_intent?.payment_intent_info?.is_redirect) {
+      //     return router.push(
+      //       payment_intent?.payment_intent_info?.redirect_url as string,
+      //     );
+      //   } else {
+      return router.push(`${routes.orderUrl(res.tracking_number)}/payment`);
+      //   }
+      // }
     },
 
     onError: (err: any) => {
@@ -120,13 +121,13 @@ export default function CartCheckout() {
     //   return;
     // }
 
-    if (settings?.useOtp) {
-      if (!phoneNumber) {
-        toast.error(<b>{t('text-enter-phone-number')}</b>);
-        window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
-        return;
-      }
-    }
+    // if (settings?.useOtp) {
+    //   if (!phoneNumber) {
+    //     toast.error(<b>{t('text-enter-phone-number')}</b>);
+    //     window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+    //     return;
+    //   }
+    // }
 
     const isFullWalletPayment =
       use_wallet_points && payableAmount == 0 ? true : false;
@@ -144,14 +145,15 @@ export default function CartCheckout() {
         unit_price: item.price,
         subtotal: item.price * item.quantity,
       })),
-      payment_gateway: gateWay,
+      // payment_gateway: gateWay,
+      payment_gateway: PaymentGateway.CASH,
       use_wallet_points,
       isFullWalletPayment,
       ...(token && { token }),
       sales_tax: verifiedResponse?.total_tax ?? 0,
       customer_contact: phoneNumber ? phoneNumber : '1',
     });
-    Cookies.remove(REVIEW_POPUP_MODAL_KEY);
+    // Cookies.remove(REVIEW_POPUP_MODAL_KEY);
   }
 
   return (
@@ -159,25 +161,37 @@ export default function CartCheckout() {
       <div className="mb-6 flex flex-col gap-3 text-dark dark:text-light sm:mb-7">
         <div className="flex justify-between">
           <p>{t('text-subtotal')}</p>
-          <strong className="font-semibold">{sub_total}</strong>
+          {/* <strong className="font-semibold">{sub_total}</strong> */}
+          <strong className="font-semibold">{10 + " Tomxu"}</strong>
         </div>
-        <div className="flex justify-between">
+        {/* <div className="flex justify-between">
           <p>{t('text-tax')}</p>
           <strong className="font-semibold">{tax}</strong>
-        </div>
+        </div> */}
         <div className="mt-4 flex justify-between border-t border-light-400 pt-5 dark:border-dark-400">
-          <p>{t('text-total')}</p>
-          <strong className="font-semibold">{total}</strong>
+          <p>{t('current-wallet-balance')}</p>
+          {/* <strong className="font-semibold">{total}</strong> */}
+          <div className="space-x-2">
+            <strong className="font-semibold text-red-600">{100 + " Tomxu"}</strong>
+            <button>
+              <LoopIcon />
+            </button>
+          </div>
         </div>
+
+        <button className="ml-auto px-9 py-2 bg-red-600 text-white rounded-md hover:bg-red-800">
+          Nạp tiền
+        </button>
+
       </div>
 
-      {verifiedResponse && (
+      {/* {verifiedResponse && (
         <CartWallet
           totalPrice={totalPrice}
           walletAmount={verifiedResponse.wallet_amount}
           walletCurrency={verifiedResponse.wallet_currency}
         />
-      )}
+      )} */}
 
       {/* {use_wallet_points && !Boolean(payableAmount) ? null : <StripePayment />} */}
 

@@ -33,9 +33,8 @@ export default function OrderViewHeader({
     <div className={cn(`bg-[#F7F8FA] dark:bg-[#333333] ${wrapperClassName}`)}>
       <div className="text-heading mb-0 flex flex-col flex-wrap items-center gap-x-8 text-base font-bold sm:flex-row md:flex-nowrap">
         <div
-          className={`order-2 flex w-full max-w-full basis-full gap-6 xs:flex-nowrap sm:order-1 sm:gap-8 ${
-            order?.children?.length > 0 ? '' : 'justify-between'
-          } ${isPaymentActionPending ? '' : 'justify-between'}`}
+          className={`order-2 flex w-full max-w-full basis-full gap-6 xs:flex-nowrap sm:order-1 sm:gap-8 ${order?.children?.length > 0 ? '' : 'justify-between'
+            } ${isPaymentActionPending ? '' : 'justify-between'}`}
         >
           <div className="flex flex-wrap items-center">
             <span className="mb-2 block text-xs font-normal dark:text-white xs:text-sm lg:mb-0 lg:inline-block lg:ltr:mr-4 lg:rtl:ml-4">
@@ -78,11 +77,11 @@ export default function OrderViewHeader({
             />
           </span>
         ) : null}
-        {settings?.paymentGateway?.length > 1 && isPaymentActionPending && (
+        {/* {settings?.paymentGateway?.length > 1 && isPaymentActionPending && (
           <span className="order-2 mt-5 w-full max-w-full shrink-0 basis-full sm:order-1 lg:mt-0 lg:w-auto lg:max-w-none lg:basis-auto lg:ltr:ml-auto lg:rtl:mr-auto">
             <ChangeGateway order={order} />
           </span>
-        )}
+        )} */}
       </div>
     </div>
   );

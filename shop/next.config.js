@@ -21,6 +21,8 @@ module.exports = {
       'pixarlaravel.s3.ap-southeast-1.amazonaws.com',
       'pickbazarlaravel.s3.ap-southeast-1.amazonaws.com',
       '192.168.102.61',
+      'tomirumedia.sgp1.vultrobjects.com',
+      'tomirupdf.sgp1.vultrobjects.com',
     ],
   },
   ...(process.env.APPLICATION_MODE === 'production' && {

@@ -132,7 +132,7 @@ export const OrderItems = ({
       render: function RenderReview(_: any, record: any) {
         return (
           <div className="flex items-center justify-end gap-4">
-            <button
+            {/* <button
               className={`flex shrink-0 items-center font-semibold text-brand transition-all duration-200 hover:bg-brand hover:text-white sm:h-12 sm:rounded sm:border sm:border-light-500 sm:bg-transparent sm:py-3 sm:px-5 sm:dark:border-dark-600 ${
                 getStatus
                   ? ''
@@ -156,7 +156,7 @@ export const OrderItems = ({
             >
               <DownloadIcon className="h-auto w-4" />
               {t('text-download')}
-            </Button>
+            </Button> */}
           </div>
         );
       },

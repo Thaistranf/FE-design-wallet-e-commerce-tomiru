@@ -50,7 +50,8 @@ export default function CartItem({
         </p>
         <p className="flex items-center gap-1">
           <span className="rounded-2xl bg-light-300 p-1.5 font-semibold uppercase leading-none text-brand-dark dark:bg-dark-500">
-            {itemPrice}
+            {/* {itemPrice} */}
+            {50 + " Tomxu"}
           </span>
           <span className="text-light-base dark:text-dark-base">
             X {quantity}
