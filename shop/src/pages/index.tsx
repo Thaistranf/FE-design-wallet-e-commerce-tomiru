@@ -24,17 +24,17 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
       queryClient.prefetchQuery(
         [API_ENDPOINTS.SETTINGS, { language: locale }],
         ({ queryKey }) =>
-          client.settings.all(queryKey[1] as SettingsQueryOptions)
+          client.settings.all(queryKey[1] as SettingsQueryOptions),
       ),
       queryClient.prefetchInfiniteQuery(
         [API_ENDPOINTS.PRODUCTS, { language: locale }],
         ({ queryKey }) =>
-          client.products.all(queryKey[1] as ProductQueryOptions)
+          client.products.all(queryKey[1] as ProductQueryOptions),
       ),
       queryClient.prefetchInfiniteQuery(
         [API_ENDPOINTS.CATEGORIES, { limit: 100, language: locale }],
         ({ queryKey }) =>
-          client.categories.all(queryKey[1] as CategoryQueryOptions)
+          client.categories.all(queryKey[1] as CategoryQueryOptions),
       ),
     ]);
     return {
@@ -60,6 +60,8 @@ function Products() {
       ...(query.price && { price: query.price }),
       sortedBy: 'DESC',
     });
+  console.log(products);
+
   return (
     <Grid
       products={products}

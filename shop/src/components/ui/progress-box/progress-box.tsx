@@ -2,7 +2,7 @@ import { CheckMark } from '@/components/icons/checkmark';
 import cn from 'classnames';
 import Scrollbar from '@/components/ui/scrollbar';
 import styles from './progress-box.module.css';
-
+import { useTranslation } from 'next-i18next';
 type ProgressProps = {
   data: any[] | undefined;
   status: string;
@@ -14,6 +14,7 @@ const ProgressBox: React.FC<ProgressProps> = ({
   data,
   filledIndex,
 }) => {
+  const { t } = useTranslation('common');
   return (
     <div className="flex w-full flex-col items-start">
       {data?.map((item: any, index) => (
@@ -26,7 +27,7 @@ const ProgressBox: React.FC<ProgressProps> = ({
               styles.progress_wrapper,
               index <= filledIndex
                 ? `${styles.checked} dark:text-dark-base`
-                : ''
+                : '',
             )}
           >
             <div
@@ -48,11 +49,11 @@ const ProgressBox: React.FC<ProgressProps> = ({
               'flex flex-col items-start ltr:ml-4 rtl:mr-4',
               index <= filledIndex
                 ? `${styles.checked} text-black dark:text-light`
-                : ''
+                : '',
             )}
           >
             {item && (
-              <span className="text-13px font-normal">{item?.name}</span>
+              <span className="text-13px font-normal">{t(item?.status)}</span>
             )}
           </div>
         </div>

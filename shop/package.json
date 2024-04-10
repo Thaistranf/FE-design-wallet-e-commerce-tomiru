@@ -11,8 +11,12 @@
     "prepare": "husky install"
   },
   "dependencies": {
+    "@emotion/react": "^11.11.4",
+    "@emotion/styled": "^11.11.5",
     "@headlessui/react": "1.7.17",
     "@hookform/resolvers": "3.3.2",
+    "@mui/icons-material": "^5.15.15",
+    "@mui/material": "^5.15.15",
     "@stripe/react-stripe-js": "2.4.0",
     "@stripe/stripe-js": "2.2.0",
     "@tailwindcss/forms": "0.5.7",

@@ -30,7 +30,7 @@ export const ORDER_STATUS = [
 export const filterOrderStatus = (
   orderStatus: any[],
   paymentStatus: PaymentStatus,
-  currentStatusIndex: number
+  currentStatusIndex: number,
 ) => {
   if ([PaymentStatus.SUCCESS].includes(paymentStatus)) {
     return currentStatusIndex > 1

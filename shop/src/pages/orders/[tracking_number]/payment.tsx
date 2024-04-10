@@ -76,8 +76,8 @@ const OrderView = ({ order, loadingStatus }: OrderViewProps) => {
     amount: order?.wallet_point?.amount!,
   });
   const { price: sub_total } = usePrice({ amount: order?.amount! });
+  // const { price: tax } = usePrice({ amount: order?.sales_tax ?? 0 });
   const { price: tax } = usePrice({ amount: order?.sales_tax ?? 0 });
-
   const { is_payment_gateway_use, is_full_paid, amount_due, gateway_payment } =
     getOrderPaymentSummery(order!);
 
@@ -106,7 +106,7 @@ const OrderView = ({ order, loadingStatus }: OrderViewProps) => {
               <Card title={t('text-total')} details={total} />
               <Card
                 title={t('text-payment-method')}
-                details={order?.payment_gateway ?? 'N/A'}
+                details={'Tomxu' ?? order?.payment_gateway}
               />
             </div>
 
@@ -133,11 +133,11 @@ const OrderView = ({ order, loadingStatus }: OrderViewProps) => {
                     title={t('text-total-item')}
                     details={formatString(
                       order?.products?.length,
-                      t('text-item')
+                      t('text-item'),
                     )}
                   />
-                  <Listitem title={t('text-sub-total')} details={sub_total} />
-                  <Listitem title={t('text-tax')} details={tax} />
+                  {/* <Listitem title={t('text-sub-total')} details={sub_total} />
+                  <Listitem title={t('text-tax')} details={tax} /> */}
                   <div className="w-1/2 border-b border-solid border-gray-200 py-1 dark:border-b-[#434343]" />
                   <Listitem title={t('text-total')} details={total} />
                   {wallet_total && (
@@ -154,7 +154,7 @@ const OrderView = ({ order, loadingStatus }: OrderViewProps) => {
                     />
                   )}
 
-                  <Listitem title={t('text-amount-due')} details={amountDue} />
+                  {/* <Listitem title={t('text-amount-due')} details={amountDue} /> */}
                 </div>
               </div>
               {/* end of total amount */}
@@ -248,7 +248,7 @@ export const getServerSideProps: GetServerSideProps = async ({ locale }) => {
   const queryClient = new QueryClient();
   await queryClient.prefetchQuery(
     [API_ENDPOINTS.SETTINGS, { language: locale }],
-    ({ queryKey }) => client.settings.all(queryKey[1] as SettingsQueryOptions)
+    ({ queryKey }) => client.settings.all(queryKey[1] as SettingsQueryOptions),
   );
 
   return {

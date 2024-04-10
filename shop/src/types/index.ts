@@ -352,6 +352,7 @@ export enum PaymentGateway {
   MOLLIE = 'MOLLIE',
   PAYSTACK = 'PAYSTACK',
   BITPAY = 'BITPAY',
+  CASH = 'CASH',
   COINBASE = 'COINBASE',
 }
 

@@ -16,6 +16,8 @@ export default function CartItem({
   const { price: itemPrice } = usePrice({
     amount: price,
   });
+  console.log(item);
+
   return (
     <div className="flex w-full items-start gap-4 py-3">
       <div className="relative aspect-[5/3.4] w-28 flex-shrink-0 border border-light-300 bg-light-300 dark:border-0 dark:bg-dark-500 xs:w-32">

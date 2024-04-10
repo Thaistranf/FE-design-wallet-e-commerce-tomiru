@@ -33,7 +33,7 @@ export default function GeneralLayout({
             {children}
           </AnimatePresence>
         </main>
-        <Copyright className="px-4 py-7 text-center font-medium text-dark-700 md:py-10 lg:px-8" />
+        {/* <Copyright className="px-4 py-7 text-center font-medium text-dark-700 md:py-10 lg:px-8" /> */}
       </motion.div>
       {isMounted && breakpoint === 'xs' && <BottomNavigation />}
     </motion.div>

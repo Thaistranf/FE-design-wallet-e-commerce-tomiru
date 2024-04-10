@@ -24,7 +24,7 @@ const OrderItemList = (_: any, record: any) => {
   let name = record.name;
   if (record?.pivot?.variation_option_id) {
     const variationTitle = record?.variation_options?.find(
-      (vo: any) => vo?.id === record?.pivot?.variation_option_id
+      (vo: any) => vo?.id === record?.pivot?.variation_option_id,
     )['title'];
     name = `${name} - ${variationTitle}`;
   }
@@ -124,43 +124,43 @@ export const OrderItems = ({
         return <p className="text-base">{pivot.order_quantity}</p>;
       },
     },
-    {
-      title: ' ',
-      dataIndex: '',
-      align: alignLeft,
-      width: 250,
-      render: function RenderReview(_: any, record: any) {
-        return (
-          <div className="flex items-center justify-end gap-4">
-            <button
-              className={`flex shrink-0 items-center font-semibold text-brand transition-all duration-200 hover:bg-brand hover:text-white sm:h-12 sm:rounded sm:border sm:border-light-500 sm:bg-transparent sm:py-3 sm:px-5 sm:dark:border-dark-600 ${
-                getStatus
-                  ? ''
-                  : 'pointer-events-none cursor-not-allowed opacity-70'
-              }`}
-              onClick={() => (getStatus ? openReviewModal(record) : null)}
-              disabled={getStatus ? false : true}
-            >
-              {getReview(record?.my_review, record?.pivot?.order_id)
-                ? t('text-update-review')
-                : t('text-write-review')}
-            </button>
-            <Button
-              onClick={() =>
-                getStatus
-                  ? mutate(record?.digital_file?.fileable_id, record?.name)
-                  : null
-              }
-              disabled={getStatus ? false : true}
-              className="shrink-0"
-            >
-              <DownloadIcon className="h-auto w-4" />
-              {t('text-download')}
-            </Button>
-          </div>
-        );
-      },
-    },
+    // {
+    //   title: ' ',
+    //   dataIndex: '',
+    //   align: alignLeft,
+    //   width: 250,
+    //   render: function RenderReview(_: any, record: any) {
+    //     return (
+    //       <div className="flex items-center justify-end gap-4">
+    //         <button
+    //           className={`flex shrink-0 items-center font-semibold text-brand transition-all duration-200 hover:bg-brand hover:text-white sm:h-12 sm:rounded sm:border sm:border-light-500 sm:bg-transparent sm:py-3 sm:px-5 sm:dark:border-dark-600 ${
+    //             getStatus
+    //               ? ''
+    //               : 'pointer-events-none cursor-not-allowed opacity-70'
+    //           }`}
+    //           onClick={() => (getStatus ? openReviewModal(record) : null)}
+    //           disabled={getStatus ? false : true}
+    //         >
+    //           {getReview(record?.my_review, record?.pivot?.order_id)
+    //             ? t('text-update-review')
+    //             : t('text-write-review')}
+    //         </button>
+    //         <Button
+    //           onClick={() =>
+    //             getStatus
+    //               ? mutate(record?.digital_file?.fileable_id, record?.name)
+    //               : null
+    //           }
+    //           disabled={getStatus ? false : true}
+    //           className="shrink-0"
+    //         >
+    //           <DownloadIcon className="h-auto w-4" />
+    //           {t('text-download')}
+    //         </Button>
+    //       </div>
+    //     );
+    //   },
+    // },
   ];
   return (
     <Table
